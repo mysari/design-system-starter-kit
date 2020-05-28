@@ -1,0 +1,21 @@
+@isTest
+public class GenericBatchClassTest {
+    public static testMethod void testLead(){
+        Account objAccount = new Account();
+        objAccount.name='TestAccount';
+        objAccount.AccountSource ='Web';
+        objAccount.BillingCountry='India';
+        insert objAccount;
+        
+        Test.StartTest();
+        
+        String obj = 'Account';
+        String field = 'AccountSource';
+        String value = 'Purchased List';
+        String query = 'SELECT '+field+' FROM ' + obj + ' WHERE BillingCountry=\'India\'';
+        Id batchInstanceId0 = Database.executeBatch(new GenericBatchClass(query,obj,field,value));
+        
+        Test.stopTest();
+        
+    }
+}
